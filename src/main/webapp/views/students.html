@@ -24,7 +24,7 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/students">Quản lý sinh viên</a>
+                <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
@@ -41,14 +41,41 @@
         </form>
     </div>
 </nav>
-<div class="jumbotron">
-    <h1 class="display-3">Home Page Hello <span th:text="${fullName}"></span></h1>
-    <p class="lead">Jumbo helper text</p>
-    <hr class="my-2">
-    <p>More info</p>
-    <p class="lead">
-        <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Jumbo action name</a>
-    </p>
+
+<div class="container">
+    <h2 class="text-center text-danger">Danh sách sinh viên</h2>
+    <div class="row" th:if="${students.size() > 0}">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>ID</th>
+                    <th>Họ Và Tên</th>
+                    <th>Giới Tính</th>
+                    <th>Địa chỉ</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student,loop: ${students}">
+                    <td scope="row" th:text="${loop.count}"></td>
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.fullName}"></td>
+                    <td th:text="${student.sex ? 'Nam' : 'Nữ'}"></td>
+                    <td th:text="${student.address}"></td>
+                    <td>
+                        <a href="" class="btn btn-primary">Sửa</a>
+                        <a href="" class="btn btn-danger">Xóa</a>
+                    </td>
+                </tr>
+
+            </table>
+
+    </div>
+    <div th:unless="${students.size() > 0}" class="text-center">
+        <img src="https://thumb.ac-illust.com/de/de8908b55218bcd6a27883c187e6d268_t.jpeg">
+    </div>
+    <a class="btn btn-success">Thêm mới</a>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
